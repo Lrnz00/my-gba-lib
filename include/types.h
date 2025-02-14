@@ -7,7 +7,6 @@
 
 
 // Base types
-
 typedef uint8_t  u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
@@ -20,7 +19,6 @@ typedef int64_t s64;
 
 
 // Volatile types
-
 typedef volatile u8  vu8;
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
@@ -33,7 +31,7 @@ typedef volatile s64 vs64;
 
 
 // Colors are 16-bit in the 5.5.5 format
-typedef COLOR u16;
+typedef u16 COLOR;
 
 
 // Shortcut used for encapsulation

@@ -4,7 +4,6 @@
 
 
 // REG_DISPCNT defines
-
 #define DCNT_MODE0	0x0000
 #define DCNT_MODE1	0x0001
 #define DCNT_MODE2	0x0002
