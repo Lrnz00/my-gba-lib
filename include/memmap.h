@@ -28,7 +28,7 @@
 #define SRAM_SIZE	0x0001_0000
 
 
-// Display registers
+// Display registers (used as variables)
 
 #define REG_DISPCNT	*(vu32*)(MEM_IO + 0x0000)	// Display control
 #define REG_DISPSTAT	*(vu16*)(MEM_IO + 0x0004)	// Display status

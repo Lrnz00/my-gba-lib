@@ -9,7 +9,11 @@
 #define SCREEN_WIDTH	240
 #define SCREEN_HEIGHT	160
 
+// Pointer to the video RAM (used as an array)
 #define vid_mem		((u16*)MEM_VRAM)
+
+
+// Some predefined colors
 
 #define CLR_BLACK	0x0000
 #define CLR_RED		0x001F

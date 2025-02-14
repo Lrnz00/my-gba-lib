@@ -33,10 +33,8 @@ typedef volatile s64 vs64;
 
 
 // Colors are 16-bit in the 5.5.5 format
-
 typedef COLOR u16;
 
 
 // Shortcut used for encapsulation
-
 #define INLINE static inline
