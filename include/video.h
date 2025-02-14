@@ -3,6 +3,9 @@
 // Video-related definitions and functions.
 
 
+#ifndef VIDEO
+#define VIDEO
+
 #include "types.h"
 
 
@@ -60,15 +63,27 @@
 #define BLUE_SHIFT	10
 
 
-// Mode 3 pixel plotting
-INLINE void m3_plot(u32 x, u32 y, COLOR clr)
-{
-	vid_mem[x + y * SCREEN_WIDTH] = clr;
-}
+// General-use
+INLINE void vid_vsync(void);
 
 
-// Create a COLOR based on RGB values
-INLINE COLOR RGB15(u32 red, u32 greeb, u32 blue)
-{
-	return red | (green << 5) | (blue << 10);
-}
+// Color-related
+INLINE COLOR RGB15(u32 red, u32 greeb, u32 blue);
+
+
+// Generic 16bpm drawing
+INLINE void bmp16_plot(u32 x, u32 y, u32 clr, void *baseAddr, u32 pitch);
+// TODO: other generics
+
+
+// Mode 3 drawing (interface with generic bmp16 functions)
+INLINE void m3_plot(u32 x, u32 y, COLOR clr);
+INLINE void m3_fill(COLOR clr);
+INLINE void m3_hline(u32 x1, u32 y, u32 x2, COLOR clr);
+INLINE void m3_vline(u32 x, u32 y1, u32 y2, COLOR clr);
+INLINE void m3_line(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
+INLINE void m3_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
+INLINE void m3_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
+
+
+#endif

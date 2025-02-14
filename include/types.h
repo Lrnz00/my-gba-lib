@@ -3,6 +3,9 @@
 // A set of typedefs, #defines and inlines.
 
 
+#ifndef TYPES
+#define TYPES
+
 #include <stdint.h>
 
 
@@ -36,3 +39,6 @@ typedef u16 COLOR;
 
 // Shortcut used for encapsulation
 #define INLINE static inline
+
+
+#endif
