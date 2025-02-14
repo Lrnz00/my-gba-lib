@@ -3,8 +3,8 @@
 // General-use functions
 
 
-#ifndef CORE
-#define CORE
+#ifndef CORE_H
+#define CORE_H
 
 #include "types.h"
 
@@ -20,4 +20,4 @@ void memset32(void *dest, u32 wd, u32 hwcount);
 void memcpy32(void *dest, const void *src, u32 wdcount);
 
 
-#endif
+#endif // CORE_H

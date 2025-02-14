@@ -3,8 +3,8 @@
 // Video-related definitions and functions.
 
 
-#ifndef VIDEO
-#define VIDEO
+#ifndef VIDEO_H
+#define VIDEO_H
 
 #include "types.h"
 
@@ -45,13 +45,13 @@
 
 // Some predefined colors
 #define CLR_BLACK	0x0000
-#define CLR_RED		0x001F
-#define CLR_LIME	0x03E0
-#define CLR_YELLOW	0x03FF
-#define CLR_BLUE	0x7C00
-#define CLR_MAG		0x7C1F
-#define CLR_CYAN	0x7FE0
-#define CLR_WHITE	0x7FFF
+#define CLR_RED     0x001F      // 0000_0000_0001_1111
+#define CLR_LIME    0x03E0      // 0000_0011_1110_0000
+#define CLR_BLUE    0x7C00      // 0111_1100_0000_0000
+#define CLR_YELLOW  0x03FF      // 0000_0011_1111_1111
+#define CLR_MAG     0x7C1F      // 0111_1100_0001_1111
+#define CLR_CYAN    0x7FE0      // 0111_1111_1110_0000
+#define CLR_WHITE   0x7FFF      // 0111_1111_1111_1111
 
 
 // Useful COLOR-related values
@@ -86,4 +86,4 @@ INLINE void m3_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
 INLINE void m3_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
 
 
-#endif
+#endif // VIDEO_H

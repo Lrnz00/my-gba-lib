@@ -3,8 +3,8 @@
 // A set of typedefs, #defines and inlines.
 
 
-#ifndef TYPES
-#define TYPES
+#ifndef TYPES_H
+#define TYPES_H
 
 #include <stdint.h>
 
@@ -41,4 +41,4 @@ typedef u16 COLOR;
 #define INLINE static inline
 
 
-#endif
+#endif // TYPES_H

@@ -3,8 +3,8 @@
 // Memory map defines.
 
 
-#ifndef MEMDEF
-#define MEMDEF
+#ifndef MEMDEF_H
+#define MEMDEF_H
 
 
 // REG_DISPCNT defines
@@ -22,4 +22,4 @@
 #define DCNT_OBJ	0x1000
 
 
-#endif
+#endif // MEMDEF_H

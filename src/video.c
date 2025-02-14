@@ -15,7 +15,7 @@ INLINE void vid_vsync()
 
 
 // Create a COLOR based on RGB values
-INLINE COLOR RGB15(u32 red, u32 greeb, u32 blue)
+INLINE COLOR RGB15(u32 red, u32 green, u32 blue)
 {
 	return red | (green << 5) | (blue << 10);
 }
@@ -24,14 +24,17 @@ INLINE COLOR RGB15(u32 red, u32 greeb, u32 blue)
 // BMP16 pixel plotting
 INLINE void bmp16_plot(u32 x, u32 y, u32 clr, void *baseAddr, u32 pitch)
 {
-	// baseAddr[x + y * pitch/8] = clr;
+	// This casts the byte offset to a 2-bytes pointer
+	// x is multiplied by 2 to get the horizontal offset
+	// Similar to the pattern (x, y) = buffer[x + y * screen_width]
+	((u16*)(baseAddr + x*2 + y*pitch))[0] = clr;
 }
-// TODO: implement other generics
+// TODO: implement other bmp16
 
 
 // Mode 3 pixel plotting
 INLINE void m3_plot(u32 x, u32 y, COLOR clr)
 {
-	// vid_mem[x + y * M3_WIDTH * 2] = clr;
+	vid_mem[x + y * M3_WIDTH] = clr;
 }
-// TODO: implement other m3 functions
+// TODO: implement other m3
