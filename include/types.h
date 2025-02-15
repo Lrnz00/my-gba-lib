@@ -37,8 +37,4 @@ typedef volatile s64 vs64;
 typedef u16 COLOR;
 
 
-// Shortcut used for encapsulation
-#define INLINE static inline
-
-
 #endif // TYPES_H

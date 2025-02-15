@@ -7,7 +7,7 @@
 
 
 // Vertical synchronization using REG_VCOUNT (0-227)
-INLINE void vid_vsync()
+void vid_vsync(void)
 {
 	while (REG_VCOUNT >= 160);	// wait untill VDraw
 	while (REG_VCOUNT < 160);	// wait untill VBlank
@@ -15,14 +15,14 @@ INLINE void vid_vsync()
 
 
 // Create a COLOR based on RGB values
-INLINE COLOR RGB15(u32 red, u32 green, u32 blue)
+COLOR RGB15(u32 red, u32 green, u32 blue)
 {
 	return red | (green << 5) | (blue << 10);
 }
 
 
 // BMP16 pixel plotting
-INLINE void bmp16_plot(u32 x, u32 y, u32 clr, void *baseAddr, u32 pitch)
+void bmp16_plot(u32 x, u32 y, u32 clr, void *baseAddr, u32 pitch)
 {
 	// This casts the byte offset to a 2-bytes pointer
 	// x is multiplied by 2 to get the horizontal offset
@@ -33,7 +33,7 @@ INLINE void bmp16_plot(u32 x, u32 y, u32 clr, void *baseAddr, u32 pitch)
 
 
 // Mode 3 pixel plotting
-INLINE void m3_plot(u32 x, u32 y, COLOR clr)
+void m3_plot(u32 x, u32 y, COLOR clr)
 {
 	vid_mem[x + y * M3_WIDTH] = clr;
 }
