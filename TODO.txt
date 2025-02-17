@@ -1,2 +1,1 @@
-makefile
-tests
+tests (unit, integration and system)

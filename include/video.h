@@ -7,6 +7,7 @@
 #define VIDEO_H
 
 #include "types.h"
+#include "memmap.h"
 
 
 // Sizes in pixels

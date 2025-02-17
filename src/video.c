@@ -4,6 +4,7 @@
 
 
 #include "video.h"
+#include "memmap.h"
 
 
 // Vertical synchronization using REG_VCOUNT (0-227)
