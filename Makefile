@@ -6,7 +6,7 @@ CFLAGS		:= 	-g -Wall -O2\
 			$(ARCH)
 
 BIN_NAME 	:=	mygbalib
-DIR_BIN		:=	bin
+DIR_BIN		:=	lib
 DIR_BUILD	:=	build
 DIR_SOURCES	:=	src
 DIR_HEADERS	:=	include
