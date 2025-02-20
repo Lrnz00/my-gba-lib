@@ -16,6 +16,17 @@ void vid_vsync(void)
 }
 
 
+// Page flipping for modes 4 and 5
+// Changes display page in REG_DISPCNT and sets
+//   vid_page to point to the back buffer
+u16 *vid_flip(void)
+{
+	vid_page = (u16*)((u32)vid_page ^ VRAM_PAGE_SIZE);
+	REG_DISPCNT ^= DCNT_PAGE;
+	return vid_page;
+}
+
+
 // Create a COLOR based on RGB values
 COLOR RGB15(u32 red, u32 green, u32 blue)
 {
@@ -62,6 +73,7 @@ void bmp16_vline(u32 x, u32 y1, u32 y2, COLOR clr, void *baseAddr, u32 pitch)
 	}
 
 	u16 *dest = (u16*)(baseAddr + x*2 + y1*pitch);
+	pitch /= 2;    // The pitch is byte-based, but the pointer is halfword-based
 
 	// Draw
 	for (u32 height = y2 - y1 + 1; height > 0; height--) {
@@ -76,6 +88,7 @@ void bmp16_line(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 p
 {
 	u32 ii, dx, dy, xstep, ystep, dd;
 	u16 *dest = (u16*)(baseAddr + y1*pitch + x1*2);
+	pitch /= 2;    // The pitch is byte-based, but the pointer is halfword-based
 
 	// --- Normalization ---
 	if (x1 > x2) {
@@ -160,6 +173,7 @@ void bmp16_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 p
 	u32 width = x2 - x1;
 	u32 height = y2 - y1;
 	u16 *dest = (u16*)(baseAddr + y1*pitch + x1*2);
+	pitch /= 2;    // The pitch is byte-based, but the pointer is halfword-based
 
 	// --- Draw ---
 	while (height--) {
@@ -189,6 +203,7 @@ void bmp16_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 
 	u32 width = x2 - x1;
 	u32 height = y2 - y1;
 	u16 *dest = (u16*)(baseAddr + y1*pitch + x1*2);
+	pitch /= 2;    // The pitch is byte-based, but the pointer is halfword-based
 
 	// --- Top line ---
 	memset16(dest, (u32)clr, width);
@@ -255,4 +270,19 @@ void m3_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr)
 void m3_fill(COLOR clr)
 {
 	memset32(vid_mem, dup16(clr), M3_SIZE/4);
+}
+
+
+// Mode 4 pixel plotting
+void m4_plot(u32 x, u32 y, u8 clrid)
+{
+	// Division by 2 because the m4 buffer is 8-bit, and the array is 16-bit
+	u16 *dest = &vid_page[(y * M4_WIDTH + x) >> 1]
+
+	if (x & 1)
+		// Odd
+		*dest = (*dest & 0xFF) | (clrid << 8);
+	else
+		// Even
+		*dest = (*dest & ~0xFF) | clrid;
 }

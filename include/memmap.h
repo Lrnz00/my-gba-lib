@@ -10,23 +10,23 @@
 
 
 // Main sections
-#define MEM_EWRAM	0x02000000	// External work RAM
-#define MEM_IWRAM	0x03000000	// Internal work RAM
-#define MEM_IO		0x04000000	// I/O registers
-#define MEM_PAL		0x05000000	// Palette (No 8bit-write)
-#define MEM_VRAM	0x06000000	// Video RAM (No 8bit-write)
-#define MEM_OAM		0x07000000	// Object Attribute Memory (No 8bit-write)
-#define MEM_ROM		0x08000000	// ROM
-#define MEM_SRAM	0x0E000000	// Static RAM (8bit-write only)
+#define MEM_EWRAM		0x02000000		// External work RAM
+#define MEM_IWRAM		0x03000000		// Internal work RAM
+#define MEM_IO			0x04000000		// I/O registers
+#define MEM_PAL			0x05000000		// Palette (No byte-write)
+#define MEM_VRAM		0x06000000		// Video RAM (No byte-write)
+#define MEM_OAM			0x07000000		// Object Attribute Memory (No byte-write)
+#define MEM_ROM			0x08000000		// ROM
+#define MEM_SRAM		0x0E000000		// Static RAM (byte-write only)
 
 
 // Main sections' sizes
-#define EWRAM_SIZE	0x00040000
-#define IWRAM_SIZE	0x00008000
-#define PAL_SIZE	0x00000400
-#define VRAM_SIZE	0x00018000
-#define OAM_SIZE	0x00000400
-#define SRAM_SIZE	0x00010000
+#define EWRAM_SIZE		0x00040000
+#define IWRAM_SIZE		0x00008000
+#define PAL_SIZE		0x00000400
+#define VRAM_SIZE		0x00018000
+#define OAM_SIZE		0x00000400
+#define SRAM_SIZE		0x00010000
 
 
 // Subsections' sizes

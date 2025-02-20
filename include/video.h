@@ -44,6 +44,10 @@
 #define vid_mem		((u16*)MEM_VRAM)
 
 
+// Page pointer
+u16 *vid_page = vid_mem;
+
+
 // Some predefined colors
 #define CLR_BLACK	0x0000
 #define CLR_RED     0x001F      // 0000_0000_0001_1111
@@ -66,19 +70,29 @@
 
 // General-use
 void vid_vsync(void);
+u16 *vid_flip(void);
 
 
 // Color-related
 COLOR RGB15(u32 red, u32 green, u32 blue);
 
 
-// Generic 16bpm drawing
+// Generic 16bmp drawing
 void bmp16_plot(u32 x, u32 y, COLOR clr, void *baseAddr, u32 pitch);
 void bmp16_hline(u32 x1, u32 y, u32 x2, COLOR clr, void *baseAddr, u32 pitch);
 void bmp16_vline(u32 x, u32 y1, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
 void bmp16_line(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
 void bmp16_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
 void bmp16_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
+
+
+// Generic 8bmp drawing
+void bmp8_plot(u32 x, u32 y, COLOR clr, void *baseAddr, u32 pitch);
+void bmp8_hline(u32 x1, u32 y, u32 x2, COLOR clr, void *baseAddr, u32 pitch);
+void bmp8_vline(u32 x, u32 y1, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
+void bmp8_line(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
+void bmp8_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
+void bmp8_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr, void *baseAddr, u32 pitch);
 
 
 // Mode 3 drawing (interface with generic bmp16 functions)
@@ -89,6 +103,16 @@ void m3_line(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
 void m3_rect(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
 void m3_frame(u32 x1, u32 y1, u32 x2, u32 y2, COLOR clr);
 void m3_fill(COLOR clr);
+
+
+// Mode 4 drawing (interface with generic bmp8 functions)
+void m4_plot(u32 x, u32 y, u8 clrid);
+void m4_hline(u32 x1, u32 y, u32 x2, u8 clrid);
+void m4_vline(u32 x, u32 y1, u32 y2, u8 clrid);
+void m4_line(u32 x1, u32 y1, u32 x2, u32 y2, u8 clrid);
+void m4_rect(u32 x1, u32 y1, u32 x2, u32 y2, u8 clrid);
+void m4_frame(u32 x1, u32 y1, u32 x2, u32 y2, u8 clrid);
+void m4_fill(u8 clrid);
 
 
 #endif // VIDEO_H
