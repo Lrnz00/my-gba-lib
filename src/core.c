@@ -17,11 +17,20 @@
 // hw is passed as u32 because standard memset() works that way
 void memset16(void *dest, u32 hw, u32 hwcount)
 {
-	while (hwcount--) {
-		memset(dest, hw, 1);
-		memset(dest + 1, hw >> 8, 1);
-		dest += 2;
-	}
+	// Pack two 16-bit values into a 32-bit word
+    u32 hw32 = ((u32)hw << 16) | hw;
+    u32 *ptr32 = (u32*)dest;
+
+    // Fill in 32-bit chunks for better performance
+    while (hwcount >= 2) {
+        *ptr32++ = hw32;
+        hwcount -= 2;
+    }
+
+    // Handle remaining 16-bit word if hwcount was odd
+    if (hwcount) {
+        *((u32*)ptr32) = hw;
+    }
 }
 
 
@@ -36,13 +45,13 @@ void memcpy16(void *dest, const void *src, u32 hwcount)
 // dest must be word-aligned
 void memset32(void *dest, u32 wd, u32 wdcount)
 {
-	while (wdcount--) {
-		memset(dest, wd, 1);
-		memset(dest + 1, wd >> 8, 1);
-		memset(dest + 2, wd >> 16, 1);
-		memset(dest + 3, wd >> 24, 1);
-		dest += 4;
-	}
+	// Treat dest as 32-bit pointer
+	u32 *ptr = (u32*)dest;
+
+    while (wdcount--) {
+        // Write the 32-bit value directly
+		*ptr++ = wd;
+    }
 }
 
 
